@@ -61,6 +61,15 @@
           android:paddingHorizontal="8dp"
           android:text="@string/enable_assistant"
           android:textSize="16sp" />
+
+      <Button
+          android:id="@+id/select_area"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginTop="32dp"
+          android:text="@string/select_block_area"
+          android:textSize="16sp" />
     </LinearLayout>
 
   </ScrollView>

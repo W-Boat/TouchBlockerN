@@ -26,6 +26,7 @@
   <string name="enable_assistant_toast_disable">Change the default assistant app</string>
   <string name="brand_icon_content_description">Touch Blocker icon</string>
   <string name="footer">An app by Eric Cochran</string>
+  <string name="select_block_area">Select Block Area</string>
 
   <color name="primary">#111133</color>
   <color name="accent">#4499FF</color>

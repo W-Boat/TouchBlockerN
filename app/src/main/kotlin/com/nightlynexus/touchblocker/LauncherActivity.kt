@@ -23,6 +23,7 @@ class LauncherActivity : Activity(), FloatingViewStatus.Listener, KeepScreenOnSt
   private lateinit var enableButton: TextView
   private lateinit var keepScreenOnCheckBox: CompoundButton
   private lateinit var assistantCheckBox: CompoundButton
+  private lateinit var selectAreaButton: View
 
   override fun onCreate(savedInstanceState: Bundle?) {
     val application = application as TouchBlockerApplication
@@ -39,6 +40,7 @@ class LauncherActivity : Activity(), FloatingViewStatus.Listener, KeepScreenOnSt
     enableButton = findViewById(R.id.enable)
     keepScreenOnCheckBox = findViewById(R.id.keep_screen_on)
     assistantCheckBox = findViewById(R.id.enable_assistant)
+    selectAreaButton = findViewById(R.id.select_area)
     if (floatingViewStatus.added) {
       onFloatingViewAdded()
     } else if (floatingViewStatus.permissionGranted) {
@@ -72,6 +74,9 @@ class LauncherActivity : Activity(), FloatingViewStatus.Listener, KeepScreenOnSt
         R.string.enable_assistant_toast
       }
       Toast.makeText(this, toastMessageResource, Toast.LENGTH_LONG).show()
+    }
+    selectAreaButton.setOnClickListener {
+      startActivity(Intent(this, AreaSelectionActivity::class.java))
     }
     floatingViewStatus.addListener(this)
   }
