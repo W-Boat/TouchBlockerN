@@ -11,12 +11,9 @@ import android.view.MotionEvent
 import android.view.View
 
 class AreaSelectionActivity : Activity() {
-  private lateinit var selectionView: SelectionView
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    selectionView = SelectionView(this)
-    setContentView(selectionView)
+    setContentView(SelectionView(this))
   }
 
   private inner class SelectionView(context: Context) : View(context) {
@@ -52,7 +49,7 @@ class AreaSelectionActivity : Activity() {
           endY = event.y
           drawing = false
           saveSelection()
-          finish()
+          this@AreaSelectionActivity.finish()
         }
       }
       return true
@@ -73,7 +70,7 @@ class AreaSelectionActivity : Activity() {
     }
 
     private fun saveSelection() {
-      val prefs = context.getSharedPreferences("touch_blocker", Context.MODE_PRIVATE)
+      val prefs = this@AreaSelectionActivity.getSharedPreferences("touch_blocker", Context.MODE_PRIVATE)
       prefs.edit().apply {
         putFloat("block_left", minOf(startX, endX))
         putFloat("block_top", minOf(startY, endY))
