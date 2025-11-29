@@ -1,6 +1,7 @@
 package com.nightlynexus.touchblocker
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -18,7 +19,7 @@ class AreaSelectionActivity : Activity() {
     setContentView(selectionView)
   }
 
-  private inner class SelectionView(context: Activity) : View(context) {
+  private inner class SelectionView(context: Context) : View(context) {
     private val paint = Paint().apply {
       color = Color.argb(128, 255, 0, 0)
       style = Paint.Style.FILL
