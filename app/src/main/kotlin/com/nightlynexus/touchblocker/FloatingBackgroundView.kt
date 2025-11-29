@@ -51,8 +51,8 @@ internal class FloatingBackgroundView(
     visibility = GONE
   }
 
-  override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-    if (locked && blockRight > blockLeft && blockBottom > blockTop) {
+  override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+    if (ev != null && locked && blockRight > blockLeft && blockBottom > blockTop) {
       if (ev.x >= blockLeft && ev.x <= blockRight && ev.y >= blockTop && ev.y <= blockBottom) {
         return false
       }
