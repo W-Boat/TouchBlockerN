@@ -23,8 +23,17 @@ internal class FloatingBackgroundView(
   private var locked = false
   private var hasShownToast = false
   private var backgroundToastViewAlphaAnimator: ViewPropertyAnimator? = null
+  private var blockLeft = 0f
+  private var blockTop = 0f
+  private var blockRight = 0f
+  private var blockBottom = 0f
 
   init {
+    val prefs = context.getSharedPreferences("touch_blocker", Context.MODE_PRIVATE)
+    blockLeft = prefs.getFloat("block_left", 0f)
+    blockTop = prefs.getFloat("block_top", 0f)
+    blockRight = prefs.getFloat("block_right", 0f)
+    blockBottom = prefs.getFloat("block_bottom", 0f)
     val inflater = LayoutInflater.from(context)
     backgroundToastView = inflater.inflate(R.layout.background_toast, this, false)
     (backgroundToastView.layoutParams as LayoutParams).apply {
@@ -40,6 +49,15 @@ internal class FloatingBackgroundView(
     addView(backgroundToastView)
 
     visibility = GONE
+  }
+
+  override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+    if (locked && blockRight > blockLeft && blockBottom > blockTop) {
+      if (ev.x >= blockLeft && ev.x <= blockRight && ev.y >= blockTop && ev.y <= blockBottom) {
+        return false
+      }
+    }
+    return super.onInterceptTouchEvent(ev)
   }
 
   fun setLocked(locked: Boolean) {
