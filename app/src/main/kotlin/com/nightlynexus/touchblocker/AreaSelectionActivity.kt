@@ -73,7 +73,7 @@ class AreaSelectionActivity : Activity() {
     }
 
     private fun saveSelection() {
-      val prefs = getSharedPreferences("touch_blocker", MODE_PRIVATE)
+      val prefs = context.getSharedPreferences("touch_blocker", Context.MODE_PRIVATE)
       prefs.edit().apply {
         putFloat("block_left", minOf(startX, endX))
         putFloat("block_top", minOf(startY, endY))
